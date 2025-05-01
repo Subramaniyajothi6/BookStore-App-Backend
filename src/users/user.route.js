@@ -12,9 +12,9 @@ router.post("/admin", async (req, res) => {
         const admin = await User.findOne({username});
 
         if(!admin){
-        res.status(404).json({message:'Admin not found!'})};
+        return res.status(404).json({message:'Admin not found!'})};
 
-        if(admin.password !== admin.password){
+        if(password !== admin.password){
             res.status(401).send({message:'Incorrect password!'})
         }
 
@@ -25,10 +25,10 @@ router.post("/admin", async (req, res) => {
 
         );   
         
-        res.status(200).json({message:'Admin logged in successfully',token:token,user:{user:admin.username,role:admin.role}});
+        return res.status(200).json({message:'Admin logged in successfully',token:token,user:{user:admin.username,role:admin.role}});
     } catch (error) {
         console.log("failed to login as admin", error);
-        res.status(401).send({ message: "Failed to login as admin", error });
+        return res.status(401).send({ message: "Failed to login as admin", error });
     }
 })
 

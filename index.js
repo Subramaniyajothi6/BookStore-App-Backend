@@ -11,9 +11,13 @@ require('dotenv').config()
 
 // middleware
 app.use(express.json())
+app.use((req, res, next) => {
+  console.log("Origin:", req.headers.origin);
+  next();
+});
 app.use(cors({ origin: [
   "http://localhost:5173",
-  "https://book-store-app-frontend-6v9q.vercel.app"
+  "https://book-store-app-frontend-s1mp.vercel.app"
 ],
   credentials:true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
