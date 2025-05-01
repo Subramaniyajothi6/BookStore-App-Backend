@@ -17,7 +17,8 @@ app.use((req, res, next) => {
 });
 app.use(cors({ origin: [
   "http://localhost:5173",
-  "https://book-store-app-frontend-s1mp.vercel.app"
+  "https://book-store-app-frontend-s1mp.vercel.app",
+  "https://book-store-app-frontend-s1mp-cv2dzk9o9.vercel.app"
 ],
   credentials:true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
