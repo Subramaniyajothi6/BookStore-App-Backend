@@ -3,18 +3,9 @@ const express = require('express')
 const app = express()
 const mongoose = require('mongoose');
 const cors = require('cors')
-
+require('dotenv').config()
 const port = process.env.PORT || 5000
 
-require('dotenv').config()
-
-
-// middleware
-app.use(express.json())
-app.use((req, res, next) => {
-  console.log("Origin:", req.headers.origin);
-  next();
-});
 app.use(cors({ origin: [
   "http://localhost:5173",
   "https://book-store-app-frontend-s1mp.vercel.app",
@@ -25,6 +16,15 @@ app.use(cors({ origin: [
   allowedHeaders: ['Content-Type', 'Authorization']
 
 }))
+
+
+// middleware
+app.use(express.json())
+app.use((req, res, next) => {
+  console.log("Origin:", req.headers.origin);
+  next();
+});
+
 
 app.get('/', (req, res) => {
   res.send('Book API Server is running');
